@@ -1,0 +1,1 @@
+ docker run --name jooq-test -v `pwd`/postgres-data:/var/lib/postgresql -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
