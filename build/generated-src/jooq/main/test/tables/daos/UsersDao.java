@@ -96,4 +96,26 @@ public class UsersDao extends DAOImpl<UsersRecord, test.tables.pojos.Users, Long
     public List<test.tables.pojos.Users> fetchByEmail(String... values) {
         return fetch(Users.USERS.EMAIL, values);
     }
+
+    /**
+     * Fetch a unique record that has <code>email = value</code>
+     */
+    public test.tables.pojos.Users fetchOneByEmail(String value) {
+        return fetchOne(Users.USERS.EMAIL, value);
+    }
+
+    /**
+     * Fetch records that have <code>phoneId BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<test.tables.pojos.Users> fetchRangeOfPhoneid(Long lowerInclusive, Long upperInclusive) {
+        return fetchRange(Users.USERS.PHONEID, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>phoneId IN (values)</code>
+     */
+    public List<test.tables.pojos.Users> fetchByPhoneid(Long... values) {
+        return fetch(Users.USERS.PHONEID, values);
+    }
 }

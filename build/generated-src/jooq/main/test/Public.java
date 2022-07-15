@@ -12,8 +12,13 @@ import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
 import test.tables.FlywaySchemaHistory;
+import test.tables.InnerInnerRecords;
+import test.tables.InnerRecords;
+import test.tables.Phones;
+import test.tables.Records;
 import test.tables.RoleUser;
 import test.tables.Roles;
+import test.tables.UniqueTest;
 import test.tables.Users;
 
 
@@ -36,6 +41,26 @@ public class Public extends SchemaImpl {
     public final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
 
     /**
+     * The table <code>public.inner_inner_records</code>.
+     */
+    public final InnerInnerRecords INNER_INNER_RECORDS = InnerInnerRecords.INNER_INNER_RECORDS;
+
+    /**
+     * The table <code>public.inner_records</code>.
+     */
+    public final InnerRecords INNER_RECORDS = InnerRecords.INNER_RECORDS;
+
+    /**
+     * The table <code>public.phones</code>.
+     */
+    public final Phones PHONES = Phones.PHONES;
+
+    /**
+     * The table <code>public.records</code>.
+     */
+    public final Records RECORDS = Records.RECORDS;
+
+    /**
      * The table <code>public.role_user</code>.
      */
     public final RoleUser ROLE_USER = RoleUser.ROLE_USER;
@@ -44,6 +69,11 @@ public class Public extends SchemaImpl {
      * The table <code>public.roles</code>.
      */
     public final Roles ROLES = Roles.ROLES;
+
+    /**
+     * The table <code>public.unique_test</code>.
+     */
+    public final UniqueTest UNIQUE_TEST = UniqueTest.UNIQUE_TEST;
 
     /**
      * The table <code>public.users</code>.
@@ -67,8 +97,13 @@ public class Public extends SchemaImpl {
     public final List<Table<?>> getTables() {
         return Arrays.asList(
             FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY,
+            InnerInnerRecords.INNER_INNER_RECORDS,
+            InnerRecords.INNER_RECORDS,
+            Phones.PHONES,
+            Records.RECORDS,
             RoleUser.ROLE_USER,
             Roles.ROLES,
+            UniqueTest.UNIQUE_TEST,
             Users.USERS
         );
     }

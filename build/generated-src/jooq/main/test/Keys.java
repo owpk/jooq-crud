@@ -11,12 +11,22 @@ import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
 
 import test.tables.FlywaySchemaHistory;
+import test.tables.InnerInnerRecords;
+import test.tables.InnerRecords;
+import test.tables.Phones;
+import test.tables.Records;
 import test.tables.RoleUser;
 import test.tables.Roles;
+import test.tables.UniqueTest;
 import test.tables.Users;
 import test.tables.records.FlywaySchemaHistoryRecord;
+import test.tables.records.InnerInnerRecordsRecord;
+import test.tables.records.InnerRecordsRecord;
+import test.tables.records.PhonesRecord;
+import test.tables.records.RecordsRecord;
 import test.tables.records.RoleUserRecord;
 import test.tables.records.RolesRecord;
+import test.tables.records.UniqueTestRecord;
 import test.tables.records.UsersRecord;
 
 
@@ -32,9 +42,18 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final UniqueKey<FlywaySchemaHistoryRecord> FLYWAY_SCHEMA_HISTORY_PK = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, DSL.name("flyway_schema_history_pk"), new TableField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK }, true);
+    public static final UniqueKey<InnerInnerRecordsRecord> INNER_INNER_RECORDS_PKEY = Internal.createUniqueKey(InnerInnerRecords.INNER_INNER_RECORDS, DSL.name("inner_inner_records_pkey"), new TableField[] { InnerInnerRecords.INNER_INNER_RECORDS.ID }, true);
+    public static final UniqueKey<InnerRecordsRecord> INNER_RECORDS_PKEY = Internal.createUniqueKey(InnerRecords.INNER_RECORDS, DSL.name("inner_records_pkey"), new TableField[] { InnerRecords.INNER_RECORDS.ID }, true);
+    public static final UniqueKey<PhonesRecord> PHONES_PKEY = Internal.createUniqueKey(Phones.PHONES, DSL.name("phones_pkey"), new TableField[] { Phones.PHONES.ID }, true);
+    public static final UniqueKey<RecordsRecord> RECORDS_NAME_KEY = Internal.createUniqueKey(Records.RECORDS, DSL.name("records_name_key"), new TableField[] { Records.RECORDS.NAME }, true);
+    public static final UniqueKey<RecordsRecord> RECORDS_PKEY = Internal.createUniqueKey(Records.RECORDS, DSL.name("records_pkey"), new TableField[] { Records.RECORDS.ID }, true);
     public static final UniqueKey<RoleUserRecord> ROLE_USER_PKEY = Internal.createUniqueKey(RoleUser.ROLE_USER, DSL.name("role_user_pkey"), new TableField[] { RoleUser.ROLE_USER.ID }, true);
     public static final UniqueKey<RoleUserRecord> ROLE_USER_USERID_ROLEID_KEY = Internal.createUniqueKey(RoleUser.ROLE_USER, DSL.name("role_user_userId_roleId_key"), new TableField[] { RoleUser.ROLE_USER.USERID, RoleUser.ROLE_USER.ROLEID }, true);
     public static final UniqueKey<RolesRecord> ROLES_PKEY = Internal.createUniqueKey(Roles.ROLES, DSL.name("roles_pkey"), new TableField[] { Roles.ROLES.ID }, true);
+    public static final UniqueKey<UniqueTestRecord> UNIQUE_TEST_NAME_KEY = Internal.createUniqueKey(UniqueTest.UNIQUE_TEST, DSL.name("unique_test_name_key"), new TableField[] { UniqueTest.UNIQUE_TEST.NAME }, true);
+    public static final UniqueKey<UniqueTestRecord> UNIQUE_TEST_PKEY = Internal.createUniqueKey(UniqueTest.UNIQUE_TEST, DSL.name("unique_test_pkey"), new TableField[] { UniqueTest.UNIQUE_TEST.ID }, true);
+    public static final UniqueKey<UniqueTestRecord> UNIQUE_TEST_VAL_KEY = Internal.createUniqueKey(UniqueTest.UNIQUE_TEST, DSL.name("unique_test_val_key"), new TableField[] { UniqueTest.UNIQUE_TEST.VAL }, true);
+    public static final UniqueKey<UsersRecord> USERS_EMAIL_KEY = Internal.createUniqueKey(Users.USERS, DSL.name("users_email_key"), new TableField[] { Users.USERS.EMAIL }, true);
     public static final UniqueKey<UsersRecord> USERS_PHONE_KEY = Internal.createUniqueKey(Users.USERS, DSL.name("users_phone_key"), new TableField[] { Users.USERS.PHONE }, true);
     public static final UniqueKey<UsersRecord> USERS_PKEY = Internal.createUniqueKey(Users.USERS, DSL.name("users_pkey"), new TableField[] { Users.USERS.ID }, true);
 
@@ -42,6 +61,8 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<RecordsRecord, InnerRecordsRecord> RECORDS__FK_31 = Internal.createForeignKey(Records.RECORDS, DSL.name("fk_31"), new TableField[] { Records.RECORDS.INNERRECORDID }, Keys.INNER_RECORDS_PKEY, new TableField[] { InnerRecords.INNER_RECORDS.ID }, true);
     public static final ForeignKey<RoleUserRecord, UsersRecord> ROLE_USER__FK_5 = Internal.createForeignKey(RoleUser.ROLE_USER, DSL.name("fk_5"), new TableField[] { RoleUser.ROLE_USER.USERID }, Keys.USERS_PKEY, new TableField[] { Users.USERS.ID }, true);
     public static final ForeignKey<RoleUserRecord, RolesRecord> ROLE_USER__FK_6 = Internal.createForeignKey(RoleUser.ROLE_USER, DSL.name("fk_6"), new TableField[] { RoleUser.ROLE_USER.ROLEID }, Keys.ROLES_PKEY, new TableField[] { Roles.ROLES.ID }, true);
+    public static final ForeignKey<UsersRecord, PhonesRecord> USERS__FK_4 = Internal.createForeignKey(Users.USERS, DSL.name("fk_4"), new TableField[] { Users.USERS.PHONEID }, Keys.PHONES_PKEY, new TableField[] { Phones.PHONES.ID }, true);
 }

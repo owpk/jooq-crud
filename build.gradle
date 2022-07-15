@@ -1,8 +1,9 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.3'
+    id 'org.springframework.boot' version '2.6.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'nu.studer.jooq' version '6.0.1'
+    id "org.flywaydb.flyway" version "8.5.13"
 }
 
 group 'org.example'
@@ -22,7 +23,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
-    implementation 'org.flywaydb:flyway-core'
     runtimeOnly 'org.postgresql:postgresql'
     jooqGenerator 'org.postgresql:postgresql'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
@@ -93,4 +93,10 @@ jooq {
             }
         }
     }
+}
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/postgres'
+    user = 'postgres'
+    password = 'postgres'
 }

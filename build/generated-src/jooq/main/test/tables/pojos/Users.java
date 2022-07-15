@@ -18,6 +18,7 @@ public class Users implements Serializable {
     private Long   id;
     private String phone;
     private String email;
+    private Long   phoneid;
 
     public Users() {}
 
@@ -25,16 +26,19 @@ public class Users implements Serializable {
         this.id = value.id;
         this.phone = value.phone;
         this.email = value.email;
+        this.phoneid = value.phoneid;
     }
 
     public Users(
         Long   id,
         String phone,
-        String email
+        String email,
+        Long   phoneid
     ) {
         this.id = id;
         this.phone = phone;
         this.email = email;
+        this.phoneid = phoneid;
     }
 
     /**
@@ -82,6 +86,21 @@ public class Users implements Serializable {
         return this;
     }
 
+    /**
+     * Getter for <code>public.users.phoneId</code>.
+     */
+    public Long getPhoneid() {
+        return this.phoneid;
+    }
+
+    /**
+     * Setter for <code>public.users.phoneId</code>.
+     */
+    public Users setPhoneid(Long phoneid) {
+        this.phoneid = phoneid;
+        return this;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Users (");
@@ -89,6 +108,7 @@ public class Users implements Serializable {
         sb.append(id);
         sb.append(", ").append(phone);
         sb.append(", ").append(email);
+        sb.append(", ").append(phoneid);
 
         sb.append(")");
         return sb.toString();

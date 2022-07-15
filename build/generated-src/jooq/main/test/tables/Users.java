@@ -12,7 +12,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row3;
+import org.jooq.Row4;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -62,6 +62,11 @@ public class Users extends TableImpl<UsersRecord> {
      * The column <code>public.users.email</code>.
      */
     public final TableField<UsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(50), this, "");
+
+    /**
+     * The column <code>public.users.phoneId</code>.
+     */
+    public final TableField<UsersRecord, Long> PHONEID = createField(DSL.name("phoneId"), SQLDataType.BIGINT, this, "");
 
     private Users(Name alias, Table<UsersRecord> aliased) {
         this(alias, aliased, null);
@@ -113,7 +118,21 @@ public class Users extends TableImpl<UsersRecord> {
 
     @Override
     public List<UniqueKey<UsersRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.USERS_PHONE_KEY);
+        return Arrays.asList(Keys.USERS_PHONE_KEY, Keys.USERS_EMAIL_KEY);
+    }
+
+    @Override
+    public List<ForeignKey<UsersRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.USERS__FK_4);
+    }
+
+    private transient Phones _phones;
+
+    public Phones phones() {
+        if (_phones == null)
+            _phones = new Phones(this, Keys.USERS__FK_4);
+
+        return _phones;
     }
 
     @Override
@@ -143,11 +162,11 @@ public class Users extends TableImpl<UsersRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Long, String, String> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row4<Long, String, String, Long> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 }
