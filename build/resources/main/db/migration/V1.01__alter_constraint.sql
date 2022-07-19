@@ -1,2 +1,0 @@
-ALTER TABLE "role_user" DROP CONSTRAINT "fk_6";
-ALTER TABLE "role_user" ADD CONSTRAINT "fk_6" FOREIGN KEY ("roleId") REFERENCES "roles" ("id") ON DELETE CASCADE;
